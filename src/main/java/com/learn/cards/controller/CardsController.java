@@ -1,6 +1,7 @@
 package com.learn.cards.controller;
 
 import com.learn.cards.constants.CardsConstants;
+import com.learn.cards.dto.AccountContactInfoDto;
 import com.learn.cards.dto.CardsDto;
 import com.learn.cards.dto.ErrorResponseDto;
 import com.learn.cards.dto.ResponseDto;
@@ -47,6 +48,9 @@ public class CardsController {
 
     @Autowired
     private Environment environment;
+
+    @Autowired
+    private AccountContactInfoDto accountContactInfoDto;
 
     @Operation(
             summary = "Create Card REST API",
@@ -215,5 +219,27 @@ public class CardsController {
     @GetMapping("/get-data")
     public ResponseEntity<String> getJavaVersion(){
         return ResponseEntity.status(HttpStatus.OK).body(environment.getProperty("java.home"));
+    }
+
+    @Operation(
+            summary = "Get java version information",
+            description = "get java version information that is deployed in card microservices"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "HTTP Status OK"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "HTTP Status Internal Server Error",
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDto.class)
+                    )
+            )
+    })
+    @GetMapping("/get-contact")
+    public ResponseEntity<AccountContactInfoDto> getContactInfo(){
+        return ResponseEntity.status(HttpStatus.OK).body(accountContactInfoDto);
     }
 }
