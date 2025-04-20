@@ -13,13 +13,13 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
-    show-sql: true
-  config:
-    import: "configserver:http://localhost:8071/"
+#    show-sql: true
   profiles:
     active: "prod"
   application:
     name: "cards"
+  config:
+    import: "configserver:http://localhost:8071/"
   rabbitmq:
     host: "localhost"
     port: 5672
