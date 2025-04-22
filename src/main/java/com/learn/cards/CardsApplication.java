@@ -1,6 +1,6 @@
 package com.learn.cards;
 
-import com.learn.cards.dto.AccountContactInfoDto;
+import com.learn.cards.dto.CardsContactInfoDto;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
@@ -14,7 +14,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EnableJpaRepositories("com.ranjeet.cards.repository")
 @EntityScan("com.ranjeet.cards.model")*/
 @EnableJpaAuditing(auditorAwareRef = "auditAwareImpl")
-@EnableConfigurationProperties(AccountContactInfoDto.class)
+@EnableConfigurationProperties(CardsContactInfoDto.class)
 @OpenAPIDefinition(
 		info =@Info(
 				title = "Card MicroService",

@@ -1,7 +1,7 @@
 package com.learn.cards.controller;
 
 import com.learn.cards.constants.CardsConstants;
-import com.learn.cards.dto.AccountContactInfoDto;
+import com.learn.cards.dto.CardsContactInfoDto;
 import com.learn.cards.dto.CardsDto;
 import com.learn.cards.dto.ErrorResponseDto;
 import com.learn.cards.dto.ResponseDto;
@@ -50,7 +50,7 @@ public class CardsController {
     private Environment environment;
 
     @Autowired
-    private AccountContactInfoDto accountContactInfoDto;
+    private CardsContactInfoDto cardsContactInfoDto;
 
     @Operation(
             summary = "Create Card REST API",
@@ -239,7 +239,7 @@ public class CardsController {
             )
     })
     @GetMapping("/get-contact")
-    public ResponseEntity<AccountContactInfoDto> getContactInfo(){
-        return ResponseEntity.status(HttpStatus.OK).body(accountContactInfoDto);
+    public ResponseEntity<CardsContactInfoDto> getContactInfo(){
+        return ResponseEntity.status(HttpStatus.OK).body(cardsContactInfoDto);
     }
 }
