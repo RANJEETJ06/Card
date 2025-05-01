@@ -6,6 +6,7 @@ import com.learn.cards.dto.CardsDto;
 import com.learn.cards.dto.ErrorResponseDto;
 import com.learn.cards.dto.ResponseDto;
 import com.learn.cards.service.ICardsService;
+import io.github.resilience4j.retry.annotation.Retry;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -201,8 +202,13 @@ public class CardsController {
             )
     })
     @GetMapping("/build-info")
+    @Retry(name = "getBuildInfo",fallbackMethod = "getBuildInfoFallback")
     public ResponseEntity<String> getBuildInfo(){
+//        throw new NullPointerException();
         return ResponseEntity.status(HttpStatus.OK).body(buildVersion);
+    }
+    public ResponseEntity<String> getBuildInfoFallback(Throwable throwable){
+        return ResponseEntity.status(HttpStatus.OK).body("0");
     }
 
     @Operation(
