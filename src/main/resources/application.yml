@@ -30,6 +30,9 @@ management:
   endpoint:
     shutdown:
       access: unrestricted
+  metrics:
+    tags:
+      application: ${spring.application.name}
 
 eureka:
   instance:
@@ -45,11 +48,14 @@ info:
     name: "cards"
     description: "learn API for cards"
     version: "1.1.0"
+
 logging:
   level:
     com:
       learn:
         cards: DEBUG
+  pattern:
+    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
 resilience4j.circuitbreaker:
   configs:
     default:
